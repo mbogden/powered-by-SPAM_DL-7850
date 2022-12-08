@@ -367,12 +367,11 @@ with strategy.scope():
 
 # ## Train Model
 
-# In[56]:
+# In[ ]:
 
 
 with strategy.scope():
       
-    
     # Initialize iter
     i = args.start   
     
@@ -393,8 +392,14 @@ with strategy.scope():
         i += args.num_epochs
         timeid = int( time.time() )
         
+        # Print Progress
         print( 'Progress: %d - %d' % ( i, args.stop ) )
         
+        if buildEnv:           
+            print( 'Progress: %d - %d' % ( i, timeid ), file=f )
+            print( "Training accuracy:",*["%.8f"%(x) for x in history.history['loss']], file=f)    
+            print( "Test accuracy:",*["%.8f"%(x) for x in history.history['val_loss']],file=f)
+
         if args.save_model: 
             model.save( 'models/%s-%s-%s.h5' % (args.runName, str(timeid), str(i)), save_format='h5' )
 
@@ -515,10 +520,68 @@ if buildEnv:
 print("Model and Results Saved")
 
 
-# In[ ]:
+# ## Keras Tuner?
+
+# In[70]:
 
 
+def build( hp ):
+    
+    cmdStr = ''
+    cmdStr += ' -runName demo-tuner'
+    cmdStr += ' -start 1'
+    cmdStr += ' -stop 20'
+    cmdStr += ' -num_epochs 20'
+    
+    cmdStr += ' -learning_rate %f' % hp.Float("lr", default=0.0001, min_value=1e-6, max_value=.01, sampling="log")
+    cmdStr += ' -pool %s'          % hp.Choice("pool", [ 'None', 'avg', 'max' ], default=None,  )
+    cmdStr += ' -f_depth %d'       % hp.Int( 'f_depth', default=3, min_value=1, max_value=8, step=1 )
+    cmdStr += ' -f_width %d'       % hp.Int( 'f_width', default=32, min_value=8, max_value=64, step=8 )
+    cmdStr += ' -f_activation %s'  % hp.Choice( 'f_activation', default='tanh', values=[ 'tanh', 'relu' ] )
+    cmdStr += ' -output_activation %s' % hp.Choice( 'output_activation', default='linear', \
+                                                   values=[ 'linear', 'sigmoid', 'softmax' ] )
+    cmdStr += ' -model %s'         % hp.Choice( 'model', default='efficientNetB0', \
+                                       values=[ 'efficientNetB0', 'efficientNetB1'] )
 
+    
+    print("Parsing Args")
+    args = parser.parse_args(cmdStr.split())
+
+    model = buildModel( args, X, Y )
+    print('Model: ', model )
+    
+    return model
+    
+if buildEnv:
+    import keras_tuner as kt
+
+    with strategy.scope():
+
+        hp = kt.HyperParameters()
+
+        # Build Data Generator
+        data_generator = keras.preprocessing.image.ImageDataGenerator(
+            rotation_range=180,
+            zoom_range=0.1,
+            horizontal_flip=True,
+        )
+
+        dg_trainer = data_generator.flow( 
+            X, Y, 
+            batch_size = args.batch_size
+        )
+
+        print("Something: ")
+        tuner = kt.Hyperband(
+             build,
+             objective=kt.Objective("val_loss", direction="min"),
+             max_epochs=10,
+             factor=3,
+             hyperband_iterations=3,
+             directory='tuner',)
+
+        print("Searching: ", )
+        tuner.search( dg_trainer, epochs=10, validation_data=(Xval, Yval))
 
 
 # In[ ]:
