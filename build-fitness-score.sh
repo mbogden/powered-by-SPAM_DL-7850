@@ -1,8 +1,11 @@
+#!/bin/bash
+
+# Build python script
 jupyter nbconvert --to script 'fitness_score.ipynb'
 chmod +x fitness_score.py
 
 
-# Check for valid $1 
+# Run script if asking for test
 case $1 in 
 
     'test')
