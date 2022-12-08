@@ -131,12 +131,12 @@ if len(devices) == 1:
 elif buildEnv:
     print("Using 2nd GPU")
     tf.config.set_visible_devices(devices[0:1]+devices[2:3])
-    tf.config.experimental.set_memory_growth(devices[1],True)
+    #tf.config.experimental.set_memory_growth(devices[1],True)
     strategy = tf.distribute.OneDeviceStrategy('GPU:1') # Use local GPU
 
 # Standard single GPU on backus
 else:
-    tf.config.experimental.set_memory_growth(devices[1],True)
+    #tf.config.experimental.set_memory_growth(devices[1],True)
     strategy = tf.distribute.OneDeviceStrategy('GPU:1') # Use local GPU
 
 print( 'Devices:', devices )
@@ -231,7 +231,7 @@ with strategy.scope():
 
 # ## Build Model
 
-# In[ ]:
+# In[6]:
 
 
 def buildModel( args, X, Y ):
@@ -325,7 +325,7 @@ with strategy.scope():
 
 # ## Prepare Data Generator and Initialize Results File
 
-# In[ ]:
+# In[7]:
 
 
 with strategy.scope(): 
@@ -367,7 +367,7 @@ with strategy.scope():
 
 # ## Train Model
 
-# In[ ]:
+# In[8]:
 
 
 with strategy.scope():
