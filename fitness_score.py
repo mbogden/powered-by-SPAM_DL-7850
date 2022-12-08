@@ -367,7 +367,7 @@ with strategy.scope():
 
 # ## Train Model
 
-# In[8]:
+# In[14]:
 
 
 with strategy.scope():
@@ -412,7 +412,7 @@ with strategy.scope():
 
 # ## View Ongoing Loss and Predictions
 
-# In[57]:
+# In[15]:
 
 
 if buildEnv: 
@@ -428,7 +428,7 @@ if buildEnv:
     plt.show()
 
 
-# In[63]:
+# In[16]:
 
 
 if buildEnv: 
@@ -444,7 +444,7 @@ if buildEnv:
     print( trainCorr, testCorr )
 
 
-# In[64]:
+# In[17]:
 
 
 if buildEnv: 
@@ -455,7 +455,7 @@ if buildEnv:
     
     plt.xlabel('Human Fitness Scores')
     plt.ylabel('Predictons')
-    plt.title("%s"% args.runName)
+    plt.title("%s\nValidation Correlation: %.4f"% (args.runName, testCorr))
     plt.xlim([0,1])
     plt.ylim([0,1])
     plt.legend()
