@@ -34,7 +34,7 @@ The script has a variety of command line arguments to choose from.  However most
 
 Below is a snippet of the code that shows a list of available command line arguments.  They can also be accessed by using the help command with the program.
 
-`python fitness_score --help`
+`python fitness_score.py --help`
 
 ```
 parser.add_argument( '-runName', )
@@ -60,3 +60,8 @@ parser.add_argument( "-f_width", default = 32, type=int )
 parser.add_argument( "-f_activation", default = 'relu', type=str )
 parser.add_argument( "-output_activation", default = 'sigmoid' )
 ```
+
+
+## Bulk Scripts: analysis-fitness-score.ipynb
+
+The Notebook `analysis-fitness-score.ipynb` provides an example of how to build runs of the script in bulk.  These full command lines are then saved in individual run files in the `runs` folder.  Once these runs are executed, the results should be saved within the `results` folder.  The analysis notebook also provides an example of how to read the results files and plot some statistical analysis on the learning curves.  Saved within this repository are a handful of results.
