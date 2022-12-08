@@ -1,1 +1,0 @@
-jupyter nbconvert --to script 'score-all.ipynb'
