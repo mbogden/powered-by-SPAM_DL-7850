@@ -14,10 +14,12 @@ Run script to do some directory preperation.  This will create some empty folder
 
 
 ## Building and Testing
-1. Open `finess_score.ipynb` in Juptyer Notebook too see the code.  
-This notebook can be ran within Jupyter Notebook for direct feedback and results.  Notice, there is a variable named `buildEnv` that is only true within Jupyther Notebooks.  This variable allows for visualizing a lot of extra information only within the Jupyter Notebook environment
+1. Open `finess_score.ipynb` in Juptyer Notebook to see the code.  
+
+This notebook is the primary file for creating and altering the scipt.  The notebook can be ran within Jupyter Notebook for direct feedback and results as well providing extra details and information.  Notice, there is a variable named `buildEnv` that is only true within Jupyther Notebooks.  This variable allows for visualizing a lot of extra information only within the Jupyter Notebook environment.
 
 2. Run build script to convert Jupyter Notebook into a python script.
+
 `bash build-fitness-score.sh`
 
 This will convert the notebook into a python script.  If you append the cmd `test` to the end of the builder, it will also run the script after it's built to test if it can run.
