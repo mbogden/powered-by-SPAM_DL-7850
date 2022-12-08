@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir models results tuner runs
+mkdir models tuner runs
 
 cd data
 unzip target-data.zip
