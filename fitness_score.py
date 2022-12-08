@@ -24,7 +24,7 @@ print("Modules: Imported")
 
 # ## Define Command Line Arguments
 
-# In[3]:
+# In[2]:
 
 
 # Command line arguments
@@ -61,7 +61,7 @@ print("Args: Defined")
 # ## Establish if Building Environment or Script
 # Notice if code can see it's in a Jupyter Notebook Environment, it can create an artificial string of command line arguments.  This is convenient for testing the code in a Jupyter Notebook directly and changing variables on the fly.  Then when the Notebook is compiled as a python script, all changes can be stored.
 
-# In[36]:
+# In[3]:
 
 
 # Am I in a jupyter notebook?
@@ -117,7 +117,7 @@ print( args )
 
 # ## Define Device Strategy for Tensor Flow
 
-# In[37]:
+# In[4]:
 
 
 # Read current devices
@@ -144,7 +144,7 @@ print( 'Devices:', devices )
 
 # ## Define Useful Functions
 
-# In[38]:
+# In[5]:
 
 
 def sliceKey( dictIn ):
@@ -231,7 +231,7 @@ with strategy.scope():
 
 # ## Build Model
 
-# In[58]:
+# In[ ]:
 
 
 def buildModel( args, X, Y ):
@@ -325,7 +325,7 @@ with strategy.scope():
 
 # ## Prepare Data Generator and Initialize Results File
 
-# In[44]:
+# In[ ]:
 
 
 with strategy.scope(): 
@@ -396,9 +396,9 @@ with strategy.scope():
         print( 'Progress: %d - %d' % ( i, args.stop ) )
         
         if buildEnv:           
-            print( 'Progress: %d - %d' % ( i, timeid ), file=f )
-            print( "Training accuracy:",*["%.8f"%(x) for x in history.history['loss']], file=f)    
-            print( "Test accuracy:",*["%.8f"%(x) for x in history.history['val_loss']],file=f)
+            print( 'Progress: %d - %d' % ( i, timeid ))
+            print( "Training accuracy:",*["%.8f"%(x) for x in history.history['loss']])    
+            print( "Test accuracy:",*["%.8f"%(x) for x in history.history['val_loss']])
 
         if args.save_model: 
             model.save( 'models/%s-%s-%s.h5' % (args.runName, str(timeid), str(i)), save_format='h5' )
