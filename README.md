@@ -1,15 +1,14 @@
 # powered-by-SPAM_DL-7850
-Stellar Particle Animation Module (SPAM)
-
+Author: Matthew Ogden
 
 ## Installation
 
 ```
 git clone https://github.com/mbogden/powered-by-SPAM_DL-7850.git
-git clone git@github.com:mbogden/powered-by-SPAM_DL-7850.git
 ```
 
-Run script to do some directory preperation.  This will create some empty folder and unzip test data to use. 
+Run script to do some directory preperation.  This will create some empty folder and unzip test data to use.
+
 `bash prep-dir.bash`
 
 
@@ -65,3 +64,12 @@ parser.add_argument( "-output_activation", default = 'sigmoid' )
 ## Bulk Scripts: analysis-fitness-score.ipynb
 
 The Notebook `analysis-fitness-score.ipynb` provides an example of how to build runs of the script in bulk.  These full command lines are then saved in individual run files in the `runs` folder.  Once these runs are executed, the results should be saved within the `results` folder.  The analysis notebook also provides an example of how to read the results files and plot some statistical analysis on the learning curves.  Saved within this repository are a handful of results.
+
+
+## References
+* A. Holincheck, J. Wallin and A. Harvey, JSPAM: A restricted three-body code for simulating interacting galaxies, ArXiv e-prints, arXiv:1604.00435. 
+* Holincheck, "Galaxy Zoo: Mergers - Dynamical Models of Interacting GalaxiesArXiv e-prints, arXiv:1604.00435," ArXiv e-prints, arXiv:1604.00435, 2016.
+* G. West, "On fitting the morphology of simulations of interacting galaxies to synthetic data," Middle Tennessee State University, 2021.
+* He, "Deep Residual Learning for Image Recognition," in 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016, pp. 770-778.
+* M. Tan and Q. V. Le, "EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks," arXiv, 2019. 
+* Ogden, Matthew. "Optimizing Numerical Simulations of Colliding Galaxies. II. Comparing Simulations to Astronomical Observations.," Research Notes of the AAS, 4, 2020. 
