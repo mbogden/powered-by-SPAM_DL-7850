@@ -29,5 +29,34 @@ This will convert the notebook into a python script.  If you append the cmd `tes
 
 ## Script Execution
 The script has a variety of command line arguments to choose from.  However most have default values.  The only required argument is `-runName demo-name`.  This informs the script how to name and save the results and models.  
+
 `python fitness_score -runName demo-name`
 
+Below is a snippet of the code that shows a list of available command line arguments.  They can also be accessed by using the help command with the program.
+
+`python fitness_score --help`
+
+```
+parser.add_argument( '-runName', )
+parser.add_argument( '-modelLoc', )
+parser.add_argument( "-tid",      default = '587722984435351614',  type=str )
+parser.add_argument( "-start",    default = 0,  type=int, )
+parser.add_argument( "-stop",     default = 3,  type=int, )
+parser.add_argument( "-verbose",  default = 1,  type=int, )
+parser.add_argument( "-num_epochs",    default=2,       type=int )
+parser.add_argument( "-learning_rate", default=0.0001,  type=float )
+parser.add_argument( "-batch_size",    default=16,      type=int )
+parser.add_argument( "-save_model",    default='False', type=str )
+parser.add_argument( "-data_gen",      default='True',  type=str )
+
+# Core Model types
+parser.add_argument( "-model",   default = 'efficientNetB0', type=str)
+parser.add_argument( "-pool",    default = 'None',           type=str )
+parser.add_argument( "-weights", default = 'imagenet',       type=str )
+
+# Final layers
+parser.add_argument( "-f_depth", default = 8,  type=int )
+parser.add_argument( "-f_width", default = 32, type=int )
+parser.add_argument( "-f_activation", default = 'relu', type=str )
+parser.add_argument( "-output_activation", default = 'sigmoid' )
+```
