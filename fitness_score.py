@@ -41,7 +41,7 @@ parser.add_argument( "-verbose",  default = 1,  type=int, )
 parser.add_argument( "-num_epochs",    default=2,       type=int )
 parser.add_argument( "-learning_rate", default=0.0001,  type=float )
 parser.add_argument( "-batch_size",    default=16,      type=int )
-parser.add_argument( "-save_model",    default='False', type=str )
+parser.add_argument( "-save_model",    default='True', type=str )
 parser.add_argument( "-data_gen",      default='True',  type=str )
 
 # Core Model types
@@ -522,7 +522,7 @@ print("Model and Results Saved")
 
 # ## Keras Tuner?
 
-# In[70]:
+# In[ ]:
 
 
 def build( hp ):
